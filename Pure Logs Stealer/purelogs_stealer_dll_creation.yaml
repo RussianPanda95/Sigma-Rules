@@ -2,9 +2,10 @@ title: Pure Logs Stealer DLL Creation
 id: 7fa04d90-a159-4d01-a71f-5e92a102f0e8
 status: experimental
 description: Detects Pure Logs Stealer DLL Creation
-
+references:
+    - https://russianpanda.com/2023/12/26/Pure-Logs-Stealer-Malware-Analysis/
 author: RussianPanda
-date: 2023/12/26
+date: 2023/12/27
 tags:
     - detection.DS0022
 logsource:
@@ -13,7 +14,11 @@ logsource:
 detection:
     selection:
         TargetFilename|endswith: '\64\sqlite.interop.dll'
-    condition: selection
+    filter: # Exclude ThreatLockerService and cleanmgr processes (thank you @ForensicITGuy for the tip)
+        Image|endswith:
+            -  '\ThreatLockerService.exe'
+            -  '\cleanmgr.exe'
+    condition: selection and not filter
 falsepositives:
-    - Unknown
+    - Medium
 level: critical
