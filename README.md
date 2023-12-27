@@ -5,3 +5,4 @@
 #### - RogueRaticate
 #### - SolarMarker
 #### - Pure Logs Stealer
+#### - Ducktail
