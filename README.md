@@ -4,3 +4,4 @@
 #### - PikaBot
 #### - RogueRaticate
 #### - SolarMarker
+#### - Pure Logs Stealer
