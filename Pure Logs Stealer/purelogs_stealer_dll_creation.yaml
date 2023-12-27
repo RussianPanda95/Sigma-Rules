@@ -1,0 +1,19 @@
+title: Pure Logs Stealer DLL Creation
+id: 7fa04d90-a159-4d01-a71f-5e92a102f0e8
+status: experimental
+description: Detects Pure Logs Stealer DLL Creation
+
+author: RussianPanda
+date: 2023/12/26
+tags:
+    - detection.DS0022
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        TargetFilename|endswith: '\64\sqlite.interop.dll'
+    condition: selection
+falsepositives:
+    - Unknown
+level: critical
