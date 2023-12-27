@@ -1,0 +1,21 @@
+title: Ducktail - Backdoor Service Creation
+id: c208cdd3-0043-49f3-a40b-681ed82eec71
+status: experimental
+description: Detects Ducktail myRdpService service creation
+
+author: RussianPanda
+date: 2023/12/24
+tags:
+    - attack.t1543
+logsource:
+    category: registry_event
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\services.exe'
+        TargetObject|endswith: 'Services\myRdpService\ImagePath'
+        Details|contains: 'myRdpService.exe'
+    condition: selection
+falsepositives:
+    - Unknown
+level: critical
