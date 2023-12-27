@@ -1,0 +1,20 @@
+title: Ducktail - Backdoor Scheduled Task Creation
+id: c208cdd3-0043-49f3-a40b-681ed82eec71
+status: experimental
+description: Detects Ducktail backdoor scheduled task creation
+
+author: RussianPanda
+date: 2023/12/24
+tags:
+    - attack.t1053
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\svchost.exe'
+        TargetFilename|contains: '\Tasks\zService'
+    condition: selection
+falsepositives:
+    - Unknown
+level: critical

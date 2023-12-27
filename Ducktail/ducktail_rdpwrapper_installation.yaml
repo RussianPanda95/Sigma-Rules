@@ -1,0 +1,23 @@
+title: Ducktail - RDP Wrapper installation
+id: 40aa1f36-12c4-46eb-93d3-d95a68820b9c
+
+status: experimental
+description: Detects installation of RDP Wrapper from Ducktail infection
+
+author: RussianPanda
+date: 2023/12/24
+tags:
+    - detection.t1021.001
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        OriginalFileName|contains: 'RDPWInst.exe'
+        Image|endswith:
+            - '\rdp.exe'
+        ParentImage|endswith: '\svczHost.exe'
+    condition: selection
+falsepositives:
+    - Unknown
+level: critical
