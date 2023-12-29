@@ -1,0 +1,20 @@
+title: Suspicious Qemu File Creation
+id: 0c47268e-8baa-4951-a798-05c10a6fc67c
+status: experimental
+description: Detects qemu-ga file creation potentially from MetaStealer infection
+
+author: RussianPanda
+date: 2023/12/29
+tags:
+    - detection.DS0022
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        OriginalFileName|contains: 'qemu-ga.exe'
+        CommandLine|contains: '\Programs\Startup\qemu-ga.exe'
+    condition: selection
+falsepositives:
+    - Unknown
+level: critical
