@@ -6,3 +6,4 @@
 #### - SolarMarker
 #### - Pure Logs Stealer
 #### - Ducktail
+#### - MetaStealer
