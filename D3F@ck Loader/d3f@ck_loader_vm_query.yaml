@@ -1,0 +1,20 @@
+title: Detects sandbox query used by D3F@ck Loader
+id: 9c642190-ee0d-4aa8-bb4b-742c7d068314
+status: experimental
+description: The command retrieves the model names of disk drives that are virtual and saves the results to a file named "ds.txt"
+author: RussianPanda
+date: 2024/7/22
+tags:
+    - T1083
+logsource:
+  category: process_creation
+  product: windows
+  service: sysmon
+detection:
+  selection:
+    OriginalFileName: findstr.exe
+    ParentCommandLine|contains: cmd /c wmic diskdrive get model | FINDSTR /I "Virtual VBOX VMware">ds.txt
+  condition: selection
+falsepositives:
+    - Unknown
+level: high
