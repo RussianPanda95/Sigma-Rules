@@ -1,0 +1,20 @@
+title: Disable behavior monitoring in Windows Defender from Java process
+id: a4b8f651-e37a-4e68-84d2-9b90e8f15fc0
+status: experimental
+description: Detects a PowerShell script that runs with elevated privileges to disable behavior monitoring in Windows Defender via javaw.exe process
+author: RussianPanda
+date: 2024/7/22
+tags:
+    - T1562.001
+logsource:
+  category: process_creation
+  product: windows
+  service: sysmon
+detection:
+  selection:
+    CommandLine|contains: Powershell.exe -Command "& {Start-Process Powershell.exe -WindowStyle hidden -ArgumentList '-Command "Set-MpPreference -Force -DisableBehaviorMonitoring "' -Verb RunAs}"
+    ParentImage|contains: jre\bin\javaw.exe
+  condition: selection
+falsepositives:
+    - Unknown
+level: high
