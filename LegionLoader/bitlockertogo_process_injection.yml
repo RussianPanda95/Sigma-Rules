@@ -1,0 +1,22 @@
+title: BitlockerToGo Process Injection
+id: d5ec00d8-247f-4ec5-9dea-7090d6935ee0
+status: experimental
+description: Detects process injection into BitLockerToGo (mainly used by LummaC2)
+references:
+    - https://www.esentire.com/blog/go-injector-leading-to-stealers
+author: RussianPanda
+date: 2024-10-08
+tags:
+    - attack.t1055
+logsource:
+    category: process_tampering
+    product: windows
+detection:
+    selection:
+       TargetImage: 'C:\Windows\BitLockerDiscoveryVolumeContents\BitLockerToGo.exe'
+    path_load:
+        - SourceImage|contains: 'AppData\Local\Temp\'
+    condition: selection and path_load
+falsepositives:
+    - Unknown
+level: critical
