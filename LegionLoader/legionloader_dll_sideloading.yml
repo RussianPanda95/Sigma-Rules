@@ -1,0 +1,25 @@
+title: Legionloader DLL Sideloading
+id: 3732e492-dc31-4551-a2bd-276711499b7c
+status: experimental
+description: Detects DLL sideloading (LegionLoader)
+references:
+    - https://securelist.com/satacom-delivers-cryptocurrency-stealing-browser-extension/109807/
+author: RussianPanda
+date: 2024-10-08
+tags:
+    - attack.t1574.001
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        ImageLoaded:
+            - "*\\libcef.dll"
+            - "*\\rnp.dll"
+            - "*\\vstdlib_s64.dll"
+    path_load:
+        Image|contains: "AppData\\Roaming"
+    condition: selection and path_load
+falsepositives:
+    - Unknown
+level: critical
