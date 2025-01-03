@@ -1,6 +1,6 @@
 title: Detects URL shortcut execution (RogueURL campaign)
 status: experimental
-description: Detects URL shortcut execution that drops NetSupportRAT
+description: Detects malicious URL shortcut execution
 author: RussianPanda
 date: 2023/6/21
 tags:
