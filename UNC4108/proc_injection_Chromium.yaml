@@ -1,0 +1,20 @@
+title: Process Injection to Decrypt Chrome Cookies
+id: 7c4f6537-b7c1-4326-a337-9a7aaa785d32
+status: experimental
+description: Detects process injection into notification_helper.exe
+references:
+    - https://trac-labs.com
+author: RussianPanda
+date: 2025-2-13
+tags:
+    - T1055
+logsource:
+    category: process_creation
+    product: windows
+    service: sysmon
+detection:
+    selection:
+       SourceImage|endswith: '\powershell.exe'
+    selection1:
+        TargetImage|endswith: '\notification_helper.exe'
+    condition: selection and selection1
