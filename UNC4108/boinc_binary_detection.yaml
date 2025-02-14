@@ -1,0 +1,20 @@
+title: BOINC binary detection
+id: 7c4f6537-b7c1-4326-a337-9a7aaa785d32
+status: experimental
+description: Detects BOINC binary
+references:
+    - https://trac-labs.com
+author: RussianPanda
+date: 2025-2-13
+tags:
+    - T1219
+logsource:
+    category: file_event
+    product: windows
+    service: sysmon
+detection:
+    selection:
+       OriginalFileName: 'boinc.exe'
+    selection1:
+        Product: 'BOINC client'
+    condition: selection and selection1
