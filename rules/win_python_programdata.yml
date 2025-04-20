@@ -1,5 +1,5 @@
 title: Detects Python under ProgramData
-id: 9c642190-ee0d-4aa8-bb4b-742c7d068314
+id: 9b48a7c2-f3e1-4d8a-9a72-e6d5f7e1d2c3
 status: experimental
 description: The rule detects Python running from ProgramData folder
 author: RussianPanda
